@@ -25,13 +25,13 @@ public class BlablablogSpringAppConfiguration extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-   /* @Bean(name = "multipartResolver")
+    @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxInMemorySize(15242880);//15MB
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
-    }*/
+    }
 
     /**
      * Add resource handler
