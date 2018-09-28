@@ -26,7 +26,7 @@
         <appender-ref ref="file"/>
     </logger>
 
-    <logger name="com.gectacoin.api">
+    <logger name="blablablog">
         <level value="ALL"/>
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>

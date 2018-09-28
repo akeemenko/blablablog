@@ -1,5 +1,7 @@
 package blablablog;
 
+import blablablog.db.MongoConfig;
+import blablablog.db.MongoConnection;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 
@@ -12,7 +14,8 @@ public class BlablablogService {
 
 
     public BlablablogService(ApplicationContext applicationContext) {
-        String testBean = (String) applicationContext.getBean("test");
+        MongoConnection conn = MongoConnection.getInstance();
+        conn.init((MongoConfig) applicationContext.getBean("mongoConfiguration"));
         instance = this;
     }
 
@@ -24,7 +27,7 @@ public class BlablablogService {
      */
     public static BlablablogService init(ApplicationContext applicationContext) {
         if (instance != null) {
-            log.fatal("Unable to initialize new instance of GectacoinApi service");
+            log.fatal("Unable to initialize new instance of Blablablog service");
             return instance;
         } else {
             return new BlablablogService(applicationContext);

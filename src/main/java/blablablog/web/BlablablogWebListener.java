@@ -1,6 +1,7 @@
 package blablablog.web;
 
 import blablablog.BlablablogService;
+import blablablog.db.MongoConnection;
 import blablablog.utils.io.IOUtils;
 import blablablog.utils.springapp.ApplicationSpringContext;
 import blablablog.utils.springapp.SpringApplicationException;
@@ -24,7 +25,7 @@ public class BlablablogWebListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        log.trace("Gectacoin api content initialized");
+        log.trace("Blablablog content initialized");
         try {
             ApplicationContext context;
             if (IOUtils.isFileExist(PATH_TO_CONFIG_FILE)) {
@@ -51,6 +52,8 @@ public class BlablablogWebListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        log.info("Gectacoin Api content destroyed");
+        log.info("Blablablog content destroyed");
+        MongoConnection conn = MongoConnection.getInstance();
+        conn.close();
     }
 }

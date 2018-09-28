@@ -3,8 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="test" class="java.lang.String">
-        <constructor-arg value="test mother fucker"/>
+    <bean id="mongoConfiguration" class="blablablog.db.MongoConfig">
+        <constructor-arg name="host" value="localhost"/>
+        <constructor-arg name="port" value="27017"/>
+        <constructor-arg name="dbname" value="test"/>
+        <constructor-arg name="connectionsPerHost" value="4"/>
+        <constructor-arg name="maxConnectionIdleTime" value="60"/>
+        <constructor-arg name="maxConnectionLifeTime" value="120"/>
     </bean>
 
 </beans>
