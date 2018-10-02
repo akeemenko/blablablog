@@ -1,4 +1,4 @@
-package blablablog.db;
+package blablablog.mongo;
 
 public class MongoConfig {
 

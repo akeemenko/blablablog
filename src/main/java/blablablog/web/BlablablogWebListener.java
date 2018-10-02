@@ -1,7 +1,7 @@
 package blablablog.web;
 
 import blablablog.BlablablogService;
-import blablablog.db.MongoConnection;
+import blablablog.mongo.MongoConnection;
 import blablablog.utils.io.IOUtils;
 import blablablog.utils.springapp.ApplicationSpringContext;
 import blablablog.utils.springapp.SpringApplicationException;

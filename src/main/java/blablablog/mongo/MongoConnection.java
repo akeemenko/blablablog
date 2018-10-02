@@ -1,6 +1,5 @@
-package blablablog.db;
+package blablablog.mongo;
 
-import blablablog.models.BaseMongoDO;
 import com.mongodb.*;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
@@ -45,19 +44,19 @@ public class MongoConnection {
         if (morphia == null) {
             logger.debug("Starting Morphia");
             morphia = new Morphia();
-
-            logger.debug("Mapping packages for classes within " + BaseMongoDO.class.getName());
-            morphia.mapPackageFromClass(BaseMongoDO.class);
+            morphia.mapPackage("blablablog.entity");
         }
         return morphia;
     }
 
-    public Datastore getDatastore(MongoConfig config) {
+    private void getDatastore(MongoConfig config) {
         if (dataStore == null) {
-            String dbName = "testdb";
-            logger.debug("Starting DataStore on DB: " + dbName);
-            dataStore = getMorphia().createDatastore(getMongo(config), dbName);
+            logger.debug("Starting DataStore on DB: " + config.getDbname());
+            dataStore = getMorphia().createDatastore(getMongo(config), config.getDbname());
         }
+    }
+
+    public Datastore getDataStore() {
         return dataStore;
     }
 
