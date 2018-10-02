@@ -1,5 +1,7 @@
 package blablablog.entity;
 
+import blablablog.utils.LazyDate;
+
 public class Comment {
     private String name;
     private String email;
@@ -7,6 +9,14 @@ public class Comment {
     private int createTimestamp;
 
     public Comment() {
+        this.createTimestamp = LazyDate.getUnixTimestamp();
+    }
+
+    public Comment(String name, String email, String message) {
+        this();
+        this.name = name;
+        this.email = email;
+        this.message = message;
     }
 
     public String getName() {

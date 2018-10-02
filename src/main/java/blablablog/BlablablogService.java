@@ -1,11 +1,12 @@
 package blablablog;
 
-import blablablog.entity.User;
+import blablablog.entity.*;
 import blablablog.mongo.MongoConfig;
 import blablablog.mongo.MongoConnection;
-import blablablog.entity.Employee;
+import javafx.geometry.Pos;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
@@ -13,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.junit.Assert;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +31,9 @@ public class BlablablogService {
         conn.init((MongoConfig) applicationContext.getBean("mongoConfiguration"));
         this.datastore = conn.getDataStore();
 
-        firstTest();
+        saveUser();
+        savePost();
+        //firstTest();
     }
 
     /**
@@ -48,12 +52,27 @@ public class BlablablogService {
     }
 
 
-    public void firstTest() {
+    public List<Post> savePost () {
 
+        List<String> tags = new ArrayList<>();
+        tags.add("BUSINESS");
+        tags.add("LOCAL");
+        List<Comment> comments = new ArrayList<>();
+        comments.add(new Comment("Valerchik", "valerchik@gmail.com", "Awesome post!!1"));
+        final Post post = new Post("First post", "Lorem ipsum dolore", tags, "Admin", comments);
 
+        datastore.save(post);
+        return datastore.find(Post.class).asList();
+    }
+
+    public void saveUser() {
         final User user = new User("admin@admin.com", "admin", "12345", "John Doe");
-        datastore.save(user);
+        Key<User> userKey = datastore.save(user);
+        System.out.printf("");
+    }
 
+
+    public void firstTest() {
 
 
 
