@@ -1,5 +1,6 @@
 package blablablog.entity;
 
+import blablablog.proto.CreateUserRequest;
 import blablablog.utils.LazyDate;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -20,12 +21,12 @@ public class User {
         this.createTimestamp = LazyDate.getUnixTimestamp();
     }
 
-    public User(String email, String login, String password, String name) {
+    public User(CreateUserRequest request) {
         this();
-        this.email = email;
-        this.login = login;
-        this.password = password;
-        this.name = name;
+        this.email = request.getEmail();
+        this.login = request.getLogin();
+        this.password = request.getPassword();
+        this.name = request.getName();
     }
 
     public ObjectId getId() {
