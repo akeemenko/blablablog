@@ -63,6 +63,24 @@ public class BlablablogService {
     }
 
     /**
+     * Get the hottest posts
+     * @param limit limit
+     * @return list of posts
+     */
+    public List<Post> getHotPosts(int limit) {
+        return datastore.find(Post.class).asList();
+    }
+
+    /**
+     * Get the latest posts
+     * @param limit limit
+     * @return list of posts
+     */
+    public List<Post> getLastPosts(int limit) {
+        return datastore.find(Post.class).asList();
+    }
+
+    /**
      * Get post by id
      * @param id post id
      * @return post entity

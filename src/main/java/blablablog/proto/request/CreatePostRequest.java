@@ -5,19 +5,12 @@ import java.util.List;
 
 public class CreatePostRequest implements IBlablablogRequest {
     private String title;
+    private String description;
     private String body;
     private List<String> tags;
     private String login;
 
     public CreatePostRequest() {
-    }
-
-
-    public CreatePostRequest(String title, String body, List<String> tags, String login) {
-        this.title = title;
-        this.body = body;
-        this.tags = tags;
-        this.login = login;
     }
 
     public String getTitle() {
@@ -26,6 +19,14 @@ public class CreatePostRequest implements IBlablablogRequest {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBody() {
@@ -55,6 +56,7 @@ public class CreatePostRequest implements IBlablablogRequest {
     @Override
     public boolean isValid() {
         if (title == null || title.length() == 0 ||
+                description == null || description.length() == 0 ||
                 body == null || body.length() == 0 ||
                 tags == null || tags.size() == 0 ||
                 login == null || login.length() == 0) {
@@ -72,8 +74,9 @@ public class CreatePostRequest implements IBlablablogRequest {
         List<String> tags = new ArrayList<>();
         tags.add("BUSINESS");
         tags.add("LOCAL");
-        request.setTitle("First post");
-        request.setBody("Lorem ipsum dolore");
+        request.setTitle("This is title of post");
+        request.setDescription("This is small description about post");
+        request.setBody("This is body of post");
         request.setTags(tags);
         request.setLogin("Admin");
         return request;
@@ -83,11 +86,10 @@ public class CreatePostRequest implements IBlablablogRequest {
     public String toString() {
         return "CreatePostRequest{" +
                 "title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +
                 ", login='" + login + '\'' +
                 '}';
     }
-
-
 }

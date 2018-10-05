@@ -8,6 +8,8 @@ import java.util.List;
 public class PostProto {
     private String id;
     private String title;
+    private String permaLink;
+    private String description;
     private String body;
     private List<String> tags;
     private String author;
@@ -21,6 +23,8 @@ public class PostProto {
     public PostProto(Post post) {
         this.id = post.getId().toString();
         this.title = post.getTitle();
+        this.permaLink = post.getPermaLink();
+        this.description = post.getDescription();
         this.body = post.getBody();
         this.tags = post.getTags();
         this.author = post.getAuthor();
@@ -43,6 +47,22 @@ public class PostProto {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getPermaLink() {
+        return permaLink;
+    }
+
+    public void setPermaLink(String permaLink) {
+        this.permaLink = permaLink;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBody() {
@@ -98,6 +118,8 @@ public class PostProto {
         return "PostProto{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", permaLink='" + permaLink + '\'' +
+                ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +
                 ", author='" + author + '\'' +
