@@ -1,6 +1,6 @@
 package blablablog.entity;
 
-import blablablog.proto.CreatePostRequest;
+import blablablog.proto.request.CreatePostRequest;
 import blablablog.utils.LazyDate;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;

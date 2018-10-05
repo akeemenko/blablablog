@@ -1,4 +1,4 @@
-package blablablog.proto;
+package blablablog.proto.request;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package blablablog.proto;
+package blablablog.proto.request;
 
 public interface IBlablablogRequest {
     boolean isValid();

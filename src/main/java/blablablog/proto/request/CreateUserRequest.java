@@ -1,6 +1,4 @@
-package blablablog.proto;
-
-import blablablog.entity.User;
+package blablablog.proto.request;
 
 public class CreateUserRequest implements IBlablablogRequest {
     private String email;

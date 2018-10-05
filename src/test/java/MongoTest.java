@@ -1,11 +1,10 @@
 import blablablog.BlablablogService;
 import blablablog.entity.Post;
-import blablablog.proto.CreatePostRequest;
-import blablablog.proto.UpdatePostRequest;
+import blablablog.proto.request.CreatePostRequest;
+import blablablog.proto.request.UpdatePostRequest;
 import blablablog.utils.springapp.ApplicationSpringContext;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mongodb.morphia.query.Query;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -29,21 +28,16 @@ public class MongoTest {
         assertEquals(1, savedPosts.size());
 
         // select
-        List<Post> foundPosts = service.getDatastore().find(Post.class)
-                .field("permaLink").equal(savedPosts.get(0).getPermaLink())
-                .asList();
-        assertEquals(1, foundPosts.size());
+        List<Post> allPosts = service.getAllPosts();
+        assertEquals(1, allPosts.size());
 
         // update
         UpdatePostRequest updatePostRequest = UpdatePostRequest.buildRequest(savedPosts.get(0).getId().toString());
-        List<Post> posts = service.updatePost(updatePostRequest);
-        assertEquals(1, posts.get(0).getTags().size());
+        List<Post> updatedPosts = service.updatePost(updatePostRequest);
+        assertEquals(1, updatedPosts.get(0).getTags().size());
 
         // delete
-        final Query<Post> postForDelete = service.getDatastore()
-                .find(Post.class)
-                .field("permaLink").equal(savedPosts.get(0).getPermaLink());
-        service.getDatastore().delete(postForDelete);
+        service.deletePost(allPosts.get(0).getId().toString());
         assertEquals(0, service.getDatastore().find(Post.class).asList().size());
     }
 }
