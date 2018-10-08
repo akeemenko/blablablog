@@ -32,6 +32,7 @@ public class Post {
     private List<String> tags;
     private String author;
     private List<Comment> comments;
+    private int views;
     private int createTimestamp;
     private int updateTimestamp;
 
@@ -40,6 +41,7 @@ public class Post {
         this.createTimestamp = LazyDate.getUnixTimestamp();
         this.tags = new ArrayList<>();
         this.comments = new ArrayList<>();
+        this.views = 0;
     }
 
     public Post(CreatePostRequest request) {
@@ -116,6 +118,14 @@ public class Post {
         this.comments = comments;
     }
 
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
     public int getCreateTimestamp() {
         return createTimestamp;
     }
@@ -166,6 +176,7 @@ public class Post {
                 ", tags=" + tags +
                 ", author='" + author + '\'' +
                 ", comments=" + comments +
+                ", views=" + views +
                 ", createTimestamp=" + createTimestamp +
                 ", updateTimestamp=" + updateTimestamp +
                 '}';

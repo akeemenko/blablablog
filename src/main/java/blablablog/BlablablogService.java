@@ -7,6 +7,7 @@ import blablablog.mongo.MongoConnection;
 import blablablog.proto.request.CreatePostRequest;
 import blablablog.proto.request.UpdatePostRequest;
 import blablablog.utils.LazyDate;
+import com.mongodb.client.model.FindOptions;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
@@ -68,7 +69,10 @@ public class BlablablogService {
      * @return list of posts
      */
     public List<Post> getHotPosts(int limit) {
-        return datastore.find(Post.class).asList();
+        return datastore.find(Post.class)
+                .order("-views")
+                .limit(limit)
+                .asList();
     }
 
     /**
@@ -77,7 +81,10 @@ public class BlablablogService {
      * @return list of posts
      */
     public List<Post> getLastPosts(int limit) {
-        return datastore.find(Post.class).asList();
+        return datastore.find(Post.class)
+                .order("-createTimestamp")
+                .limit(limit)
+                .asList();
     }
 
     /**
