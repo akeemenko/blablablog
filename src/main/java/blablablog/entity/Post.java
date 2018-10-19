@@ -26,7 +26,7 @@ public class Post {
     @Id
     private ObjectId id;
     private String title;
-    private String permaLink;
+    private String permalink;
     private String description;
     private String body;
     private List<String> tags;
@@ -47,7 +47,7 @@ public class Post {
     public Post(CreatePostRequest request) {
         this();
         this.title = request.getTitle();
-        this.permaLink = toSlug(request.getTitle());
+        this.permalink = toSlug(request.getTitle());
         this.description = request.getDescription();
         this.body = request.getBody();
         this.tags = request.getTags();
@@ -70,12 +70,12 @@ public class Post {
         this.title = title;
     }
 
-    public String getPermaLink() {
-        return permaLink;
+    public String getPermalink() {
+        return permalink;
     }
 
-    public void setPermaLink(String permaLink) {
-        this.permaLink = permaLink;
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
     }
 
     public String getDescription() {
@@ -170,7 +170,7 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", permaLink='" + permaLink + '\'' +
+                ", permalink='" + permalink + '\'' +
                 ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +

@@ -7,7 +7,6 @@ import blablablog.mongo.MongoConnection;
 import blablablog.proto.request.CreatePostRequest;
 import blablablog.proto.request.UpdatePostRequest;
 import blablablog.utils.LazyDate;
-import com.mongodb.client.model.FindOptions;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
@@ -51,9 +50,6 @@ public class BlablablogService {
     public void clear() {
         datastore.getDB().dropDatabase();
     }
-
-
-
 
     /**
      * Get all posts
@@ -102,6 +98,21 @@ public class BlablablogService {
     }
 
     /**
+     * Get post by permalink
+     * @param permaLink permalink
+     * @return post entity
+     */
+    public Post getPostByPermalink(String permaLink) throws BlablablogException {
+        Post post = datastore.find(Post.class)
+                .filter("permalink", permaLink)
+                .get();
+        if (post == null) {
+            throw new BlablablogException(ERROR_SERVER_ERROR, "Unable to find post permalink = " + permaLink);
+        }
+        return post;
+    }
+
+    /**
      * Save post
      * @param request post request
      * @return list of posts
@@ -123,7 +134,7 @@ public class BlablablogService {
         // update post
         post.setBody(request.getBody());
         post.setTitle(request.getTitle());
-        post.setPermaLink(Post.toSlug(request.getTitle()));
+        post.setPermalink(Post.toSlug(request.getTitle()));
         post.setTags(request.getTags());
         post.setUpdateTimestamp(LazyDate.getUnixTimestamp());
         datastore.merge(post);

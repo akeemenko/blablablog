@@ -2,6 +2,7 @@ package blablablog.controllers.publics;
 
 import blablablog.BlablablogService;
 import blablablog.entity.Post;
+import blablablog.exceptions.BlablablogException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,18 @@ public class PostController {
     @RequestMapping(value = "/last", method = RequestMethod.GET)
     public List<Post> lastPosts(@RequestParam("limit") int limit) {
         return BlablablogService.getInstance().getLastPosts(limit);
+    }
+
+    /**
+     * Get post by permalink
+     * @param permalink post permalink
+     * @return post entity
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Post getPost(@RequestParam("permalink") String permalink) throws BlablablogException {
+        return BlablablogService.getInstance().getPostByPermalink(permalink);
     }
 
 }

@@ -23,7 +23,7 @@ public class PostProto {
     public PostProto(Post post) {
         this.id = post.getId().toString();
         this.title = post.getTitle();
-        this.permaLink = post.getPermaLink();
+        this.permaLink = post.getPermalink();
         this.description = post.getDescription();
         this.body = post.getBody();
         this.tags = post.getTags();
