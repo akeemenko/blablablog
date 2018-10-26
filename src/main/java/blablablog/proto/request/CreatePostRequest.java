@@ -5,10 +5,10 @@ import java.util.List;
 
 public class CreatePostRequest implements IBlablablogRequest {
     private String title;
+    private String titleImage;
     private String description;
     private String body;
     private List<String> tags;
-    private String login;
 
     public CreatePostRequest() {
     }
@@ -19,6 +19,14 @@ public class CreatePostRequest implements IBlablablogRequest {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTitleImage() {
+        return titleImage;
+    }
+
+    public void setTitleImage(String titleImage) {
+        this.titleImage = titleImage;
     }
 
     public String getDescription() {
@@ -45,21 +53,12 @@ public class CreatePostRequest implements IBlablablogRequest {
         this.tags = tags;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     @Override
     public boolean isValid() {
         if (title == null || title.length() == 0 ||
                 description == null || description.length() == 0 ||
                 body == null || body.length() == 0 ||
-                tags == null || tags.size() == 0 ||
-                login == null || login.length() == 0) {
+                tags == null || tags.size() == 0) {
             return false;
         }
         return true;
@@ -78,7 +77,6 @@ public class CreatePostRequest implements IBlablablogRequest {
         request.setDescription("This is small description about post");
         request.setBody("This is body of post");
         request.setTags(tags);
-        request.setLogin("Admin");
         return request;
     }
 
@@ -86,10 +84,10 @@ public class CreatePostRequest implements IBlablablogRequest {
     public String toString() {
         return "CreatePostRequest{" +
                 "title='" + title + '\'' +
+                ", titleImage='" + titleImage + '\'' +
                 ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +
-                ", login='" + login + '\'' +
                 '}';
     }
 }

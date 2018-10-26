@@ -8,6 +8,7 @@ import org.mongodb.morphia.annotations.Id;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -26,6 +27,7 @@ public class Post {
     @Id
     private ObjectId id;
     private String title;
+    private byte[] imageBytes;
     private String permalink;
     private String description;
     private String body;
@@ -51,7 +53,7 @@ public class Post {
         this.description = request.getDescription();
         this.body = request.getBody();
         this.tags = request.getTags();
-        this.author = request.getLogin();
+        this.author = "Admin";
     }
 
     public ObjectId getId() {
@@ -68,6 +70,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public byte[] getImageBytes() {
+        return imageBytes;
+    }
+
+    public void setImageBytes(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
     }
 
     public String getPermalink() {
@@ -170,6 +180,7 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", imageBytes=" + Arrays.toString(imageBytes) +
                 ", permalink='" + permalink + '\'' +
                 ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
