@@ -28,7 +28,7 @@ public class PostProto {
         this.body = post.getBody();
         this.tags = post.getTags();
         this.author = post.getAuthor();
-        this.comments = post.getComments();
+        this.comments = post.getCommentList();
         this.createTimestamp = post.getCreateTimestamp();
         this.updateTimestamp = post.getUpdateTimestamp();
     }

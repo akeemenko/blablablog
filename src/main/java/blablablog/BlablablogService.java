@@ -109,6 +109,9 @@ public class BlablablogService {
         if (post == null) {
             throw new BlablablogException(ERROR_SERVER_ERROR, "Unable to find post permalink = " + permaLink);
         }
+        // increment view
+        post.setViews(post.getViews() + 1);
+        datastore.merge(post);
         return post;
     }
 
