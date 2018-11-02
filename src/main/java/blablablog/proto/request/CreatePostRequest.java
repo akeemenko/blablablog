@@ -56,9 +56,10 @@ public class CreatePostRequest implements IBlablablogRequest {
     @Override
     public boolean isValid() {
         if (title == null || title.length() == 0 ||
+                titleImage == null || titleImage.length() == 0 ||
                 description == null || description.length() == 0 ||
-                body == null || body.length() == 0 ||
-                tags == null || tags.size() == 0) {
+                // tags == null || tags.size() == 0 ||
+                body == null || body.length() == 0) {
             return false;
         }
         return true;

@@ -27,7 +27,7 @@ public class Post {
     @Id
     private ObjectId id;
     private String title;
-    private byte[] imageBytes;
+    private String titleImage;
     private String permalink;
     private String description;
     private String body;
@@ -51,6 +51,7 @@ public class Post {
     public Post(CreatePostRequest request) {
         this();
         this.title = request.getTitle();
+        this.titleImage = request.getTitleImage();
         this.permalink = toSlug(request.getTitle());
         this.description = request.getDescription();
         this.body = request.getBody();
@@ -74,12 +75,12 @@ public class Post {
         this.title = title;
     }
 
-    public byte[] getImageBytes() {
-        return imageBytes;
+    public String getTitleImage() {
+        return titleImage;
     }
 
-    public void setImageBytes(byte[] imageBytes) {
-        this.imageBytes = imageBytes;
+    public void setTitleImage(String titleImage) {
+        this.titleImage = titleImage;
     }
 
     public String getPermalink() {
@@ -190,7 +191,7 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", imageBytes=" + Arrays.toString(imageBytes) +
+                ", titleImage='" + titleImage + '\'' +
                 ", permalink='" + permalink + '\'' +
                 ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
